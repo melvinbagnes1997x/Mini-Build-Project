@@ -10,6 +10,47 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #43cea2 100%);
     min-height: 100vh;
     color: #333;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative background circles */
+.bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+    animation: float 12s ease-in-out infinite alternate;
+}
+.bg-circle1 {
+    width: 350px;
+    height: 350px;
+    background: #a18cd1;
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+}
+.bg-circle2 {
+    width: 250px;
+    height: 250px;
+    background: #43cea2;
+    bottom: 40px;
+    right: 60px;
+    animation-delay: 2s;
+}
+.bg-circle3 {
+    width: 200px;
+    height: 200px;
+    background: #764ba2;
+    top: 60%;
+    left: 70%;
+    animation-delay: 4s;
+}
+@keyframes float {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-30px) scale(1.08); }
 }
 
 .footer-credit {
