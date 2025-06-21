@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: task-manager-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_URI
+        sync: false
+    healthCheckPath: /api/health
+    autoDeploy: true 

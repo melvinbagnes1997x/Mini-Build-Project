@@ -1,0 +1,32 @@
+{
+  "name": "task-manager-api",
+  "version": "1.0.0",
+  "description": "A simple task manager REST API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "build": "echo 'No build step required for Node.js'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo 'Linting not configured yet'",
+    "deploy:check": "node -e \"console.log('Environment check:'); console.log('NODE_ENV:', process.env.NODE_ENV || 'development'); console.log('PORT:', process.env.PORT || 3000); console.log('DB_URI:', process.env.DB_URI ? 'Set' : 'Not set'); console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'Set' : 'Not set');\""
+  },
+  "keywords": ["task-manager", "api", "express", "mongodb", "rest", "authentication"],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}

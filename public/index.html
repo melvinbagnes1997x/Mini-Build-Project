@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager Pro</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Authentication Section -->
+  <div id="authSection" class="auth-container">
+    <div class="auth-box">
+      <div class="auth-header">
+        <h1><i class="fas fa-tasks"></i> Task Manager Pro</h1>
+        <p>Manage your tasks efficiently</p>
+      </div>
+      
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form">
+        <h2>Login</h2>
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required>
+        </div>
+        <button type="submit" class="btn-primary">Login</button>
+        <p class="auth-switch">Don't have an account? <a href="#" id="showRegister">Register</a></p>
+      </form>
+
+      <!-- Register Form -->
+      <form id="registerForm" class="auth-form hidden">
+        <h2>Register</h2>
+        <div class="form-group">
+          <label for="registerUsername">Username</label>
+          <input type="text" id="registerUsername" required>
+        </div>
+        <div class="form-group">
+          <label for="registerEmail">Email</label>
+          <input type="email" id="registerEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="registerPassword">Password</label>
+          <input type="password" id="registerPassword" required>
+        </div>
+        <button type="submit" class="btn-primary">Register</button>
+        <p class="auth-switch">Already have an account? <a href="#" id="showLogin">Login</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main Dashboard -->
+  <div id="dashboardSection" class="dashboard hidden">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1><i class="fas fa-tasks"></i> Task Manager Pro</h1>
+        <span id="userInfo" class="user-info"></span>
+      </div>
+      <div class="header-right">
+        <button id="logoutBtn" class="btn-secondary">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <i class="fas fa-list"></i>
+        <div class="stat-info">
+          <span id="totalTasks">0</span>
+          <label>Total Tasks</label>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-check-circle"></i>
+        <div class="stat-info">
+          <span id="completedTasks">0</span>
+          <label>Completed</label>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-clock"></i>
+        <div class="stat-info">
+          <span id="activeTasks">0</span>
+          <label>Active</label>
+        </div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div class="stat-info">
+          <span id="overdueTasks">0</span>
+          <label>Overdue</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Add Task Form -->
+      <div class="task-form-section">
+        <form id="addTaskForm" class="task-form">
+          <div class="form-row">
+            <input type="text" id="taskTitleInput" placeholder="Enter task title..." required>
+            <input type="date" id="taskDueDateInput">
+            <select id="taskPriorityInput">
+              <option value="medium">Medium Priority</option>
+              <option value="high">High Priority</option>
+              <option value="low">Low Priority</option>
+            </select>
+            <button type="submit" class="btn-primary">
+              <i class="fas fa-plus"></i> Add Task
+            </button>
+          </div>
+          <div class="form-row">
+            <textarea id="taskDescriptionInput" placeholder="Task description (optional)"></textarea>
+          </div>
+        </form>
+      </div>
+
+      <!-- Controls Section -->
+      <div class="controls-section">
+        <div class="controls-left">
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search tasks...">
+            <i class="fas fa-search"></i>
+          </div>
+          
+          <div class="filters">
+            <button id="filterAll" class="filter-btn active">All</button>
+            <button id="filterActive" class="filter-btn">Active</button>
+            <button id="filterCompleted" class="filter-btn">Completed</button>
+            <button id="filterOverdue" class="filter-btn">Overdue</button>
+          </div>
+        </div>
+        
+        <div class="controls-right">
+          <select id="priorityFilter">
+            <option value="">All Priorities</option>
+            <option value="high">High Priority</option>
+            <option value="medium">Medium Priority</option>
+            <option value="low">Low Priority</option>
+          </select>
+          
+          <select id="sortTasks">
+            <option value="default">Newest First</option>
+            <option value="createdAt_asc">Oldest First</option>
+            <option value="title_asc">Title A-Z</option>
+            <option value="title_desc">Title Z-A</option>
+            <option value="dueDate_asc">Due Date (Earliest)</option>
+            <option value="dueDate_desc">Due Date (Latest)</option>
+            <option value="priority_desc">Priority (High to Low)</option>
+            <option value="priority_asc">Priority (Low to High)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Task List -->
+      <div class="task-list-section">
+        <div id="taskList" class="task-list"></div>
+        
+        <!-- Pagination -->
+        <div id="pagination" class="pagination hidden">
+          <button id="prevPage" class="btn-secondary">
+            <i class="fas fa-chevron-left"></i> Previous
+          </button>
+          <span id="pageInfo" class="page-info"></span>
+          <button id="nextPage" class="btn-secondary">
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div id="loadingSpinner" class="loading-spinner hidden">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+
+  <!-- Notification Container -->
+  <div id="notificationContainer" class="notification-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
