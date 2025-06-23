@@ -71,13 +71,15 @@ app.use('/api/tasks', taskRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
+  const health = {
+    status: 'OK',
     timestamp: new Date().toISOString(),
     database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
     environment: process.env.NODE_ENV || 'development',
     version: '1.0.0'
-  });
+  };
+  console.log('Health check hit:', health);
+  res.json(health);
 });
 
 // Root endpoint for deployment health checks
@@ -109,29 +111,4 @@ app.use('*', (req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-  console.log(`Access the task manager at http://localhost:${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-});
-
-// Graceful shutdown
-process.on('SIGINT', () => {
-  console.log('SIGINT signal received: Closing MongoDB connection and server.');
-  mongoose.connection.close()
-    .then(() => {
-      console.log('MongoDB connection closed.');
-      process.exit(0);
-    })
-    .catch(err => {
-      console.error('Error closing MongoDB connection:', err);
-      process.exit(1);
-    });
-});
-
-// Handle unhandled promise rejections
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  process.exit(1);
-});
+module.exports = app;
