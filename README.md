@@ -234,11 +234,7 @@ See [DEPLOYMENT.md](./DEPLOYMENT.md) and [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_
 
 This project is licensed under the ISC License.
 
----
 
-**Built with ❤️ by [KinuuHiru] using Node.js, Express, and MongoDB**
-
----
 
 ## ✅ Final Checklist
 
@@ -250,4 +246,4 @@ This project is licensed under the ISC License.
 
 ---
 
-**Congratulations! Your Task Manager Pro is 100% complete and production-ready!**
+**Built with ❤️ by [KinuuHiru] using Node.js, Express, and MongoDB**
