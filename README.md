@@ -236,7 +236,7 @@ This project is licensed under the ISC License.
 
 ---
 
-**Built with ❤️ by [Your Name] using Node.js, Express, and MongoDB**
+**Built with ❤️ by [KinuuHiru] using Node.js, Express, and MongoDB**
 
 ---
 
